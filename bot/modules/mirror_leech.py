@@ -44,7 +44,7 @@ def _mirror_leech(bot, message, isZip=False, extract=False, isQbit=False, isLeec
                 buttons = ButtonMaker()
                 chat_u = config_dict['CHANNEL_USERNAME'].replace("@", "")
                 buttons.buildbutton("👉🏻 CHANNEL LINK 👈🏻", f"https://t.me/{chat_u}")
-                help_msg = f"Dᴇᴀʀ {uname},\nYᴏᴜ ɴᴇᴇᴅ ᴛᴏ ᴊᴏɪɴ ᴍʏ Cʜᴀɴɴᴇʟ ᴛᴏ ᴜsᴇ Bᴏᴛ \n\nCʟɪᴄᴋ ᴏɴ ᴛʜᴇ ʙᴇʟᴏᴡ Bᴜᴛᴛᴏɴ ᴛᴏ ᴊᴏɪɴ ᴍʏ Cʜᴀɴɴᴇʟ."
+                help_msg = f"Hi {uname},\n"
                 reply_message = sendMarkup(help_msg, bot, message, buttons.build_menu(2))
                 Thread(target=auto_delete_message, args=(bot, message, reply_message)).start()
                 return reply_message
@@ -184,11 +184,11 @@ def _mirror_leech(bot, message, isZip=False, extract=False, isQbit=False, isLeec
                 link = file_.get_file().file_path
 
     if not is_url(link) and not is_magnet(link):
-        help_msg = "<b>Send link along with command line:</b>"
+        help_msg = "<b>Send link along with command line</b>"
         if isQbit:
-            help_msg += "\n\n<b>By replying to link/file:</b>"
+            help_msg += "\n\n<b>By replying to link/file</b>"
         else:
-            help_msg += "\n\n<b>By replying to link/file:</b>"
+            help_msg += "\n\n<b>By replying to link/file</b>"
         reply_message = sendMessage(help_msg, bot, message)
         Thread(target=auto_delete_message, args=(bot, message, reply_message)).start()
         return reply_message
@@ -241,9 +241,9 @@ def _mirror_leech(bot, message, isZip=False, extract=False, isQbit=False, isLeec
 
     if is_gdrive_link(link):
         if not isZip and not extract and not isLeech:
-            gmsg = f"Use /{BotCommands.CloneCommand} to clone Google Drive file/folder\n\n"
-            gmsg += f"Use /{BotCommands.ZipMirrorCommand} to make zip of Google Drive folder\n\n"
-            gmsg += f"Use /{BotCommands.UnzipMirrorCommand} to extracts Google Drive archive file"
+            gmsg = f"/{BotCommands.CloneCommand} to clone Google Drive file/folder\n\n"
+            gmsg += f"/{BotCommands.ZipMirrorCommand} to make zip of Google Drive folder\n\n"
+            gmsg += f"/{BotCommands.UnzipMirrorCommand} to extracts Google Drive archive file"
             sendMessage(gmsg, bot, message)
         else:
             Thread(target=add_gd_download, args=(link, f'{DOWNLOAD_DIR}{listener.uid}', listener, name, is_gdtot, is_unified, is_udrive, is_sharer, is_sharedrive)).start()
